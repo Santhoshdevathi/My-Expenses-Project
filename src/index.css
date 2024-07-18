@@ -1,0 +1,18 @@
+root{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: rgb(68, 187, 189);
+}
+
+.look{
+  display: flex;
+  justify-content: space-around;
+  background: rgba(190, 229, 230);
+  border-width: 3px;
+}
+
+h1{
+  background: rgba(190, 215, 230);
+}
+
