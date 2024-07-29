@@ -5,16 +5,20 @@ import {useEffect,useState} from 'react'
 import { getData , postData ,getDetails ,putDetails , putChanges} from "./api"
 
 function App(){
+  let test=0;
+  console.log(test);
+
   const [items, setItems] = useState([])
   const [detls,setDtls] = useState({})
-  const [checkPut,setCheckPut] = useState(1);
+  const [checkID,setCheckID] = useState(1);
   useEffect(
     ()=>{
       bringDetails()
-      //updatingCurrentDetails();
+      //updatingCurrentID();
       getItems();
-    },[checkPut]
+    },[checkID]
   )
+  
 
   let updatingCurrentDetails = async() =>{
     let currentDays = getNoDays()
@@ -22,6 +26,7 @@ function App(){
     await putChanges(currentDays,newAverage);
     bringDetails();
   }
+
 
   let getNoDays = () =>{
     let start = new Date('June 24,2024 05:05:05').getTime();
@@ -40,10 +45,9 @@ function App(){
     let newDays = getNoDays();
     //Changing value of average
      let newAverage=Math.ceil(newTotal/newDays)
-
     //Putting of changed details
-    await putDetails(newTotal,newDays,newAverage);
-    setCheckPut(checkPut+1);
+    await putDetails(newTotal,newDays,newAverage,checkID+1);
+    setCheckID(checkID+1);
   }
 
   let getItems = async()=>{
@@ -54,7 +58,9 @@ function App(){
   let bringDetails=async()=>{
     let details = await getDetails()
     let [first_ind] = details.data;
-    setDtls(first_ind);
+    setDtls(first_ind); 
+    setCheckID(first_ind.rowID)
+    
   }
 
   let getToday = () =>{
@@ -68,10 +74,11 @@ function App(){
 
   let getDataFrom_Form = async(data)=>{
     let d = getToday()
-    let mod_data ={...data,"date":d}
+    let mod_data ={...data,"date":d,"id":checkID}
     await postInto(mod_data);
     await getItems();
     await changeDetails(data.expense)
+
 
   }
 
@@ -83,7 +90,7 @@ function App(){
     <>
       <h1 className="text-center bg-info bg-gradient">MY EXPENSES</h1>
       <div className="look border border-dark rounded">
-        <Form formData={getDataFrom_Form}></Form>
+        <Form formData={getDataFrom_Form} ></Form>
         <Display total={detls.total} days={detls.days} average={detls.average} changeDtls={updatingCurrentDetails}></Display>
       </div>
       <h1 className="text-center m-4">Expenses from 12-Jul-2024</h1>

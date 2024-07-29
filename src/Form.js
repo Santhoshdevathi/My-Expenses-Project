@@ -24,8 +24,8 @@ function Form(props){
             <button className="btn btn-primary m-2"
                 onClick={()=>{
                     props.formData({"item":itemText,"expense":price})
-                    setItemText("")
-                    setPrice("")
+                    setItemText("");
+                    setPrice("");
                 }}
             >Submit</button>
         </div>

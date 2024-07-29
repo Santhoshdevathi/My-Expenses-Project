@@ -1,12 +1,30 @@
 {
   "expenses": [
-    
+    {
+      "id": 1,
+      "item": "Went to tolgate at mid night",
+      "expense": "65",
+      "date": "22/Jul/2024"
+    },
+    {
+      "id": 2,
+      "item": "2 Tshirts,soaps and paste at Guntur D-mart",
+      "expense": "470",
+      "date": "22/Jul/2024"
+    },
+    {
+      "id": 3,
+      "item": "For celebrating the occassion of HOD becomes VC",
+      "expense": "50",
+      "date": "22/Jul/2024"
+    }
   ],
   "details": [
     {
-      "total": 935,
-      "days": 25,
-      "average": 0,
+      "total": 1520,
+      "days": 29,
+      "average": 53,
+      "rowID": 4,
       "id": "1"
     }
   ]

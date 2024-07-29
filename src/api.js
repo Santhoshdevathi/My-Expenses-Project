@@ -21,13 +21,14 @@ export async function getDetails(){
     return await axios.get(details_url)
 }
 
-export async function putDetails(tot,ds,avg){
+export async function putDetails(tot,ds,avg,curRow){
     //console.log(tot,ds,avg)
     return await axios.put(details_url+`/${id}`,
-        {
+        { 
             "total":tot,
             "days":ds,
-            "average":avg
+            "average":avg,
+            "rowID":curRow,
         }
     ) 
 }
